@@ -1,7 +1,7 @@
 import numpy as np
 
 class LinearRegression:
-    def __init__(self,iter=4000,alpha=0.001):
+    def __init__(self,iter=1000,alpha=0.001):
         self.iter=iter
         self.alpha=alpha
         self.weight=None

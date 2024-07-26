@@ -16,12 +16,18 @@ class LogisticRegression:
         self.bias=0
 
         for _ in range(self.epochs):
-            linear=np.dot(self.weights,X)+self.bias
+            linear=np.dot(X,self.weights)+self.bias
             y_pred=sigmoid(linear)
 
             dw=(1/n_sample)*np.dot(X.T,(y_pred-y))
-            db=np.sum((y_pred-y))
+            db=(1/n_sample)*np.sum((y_pred-y))
+
+            self.weights=self.weights-self.alpha*dw
+            self.bias=self.bias-self.alpha*db
     
     def predict(self,X):
-        return sigmoid(np.dot(self.weights,X)+self.bias)
+        linear=np.dot(X,self.weights)+self.bias
+        y_pred=sigmoid(linear)
+        class_pred=[0 if y<=0.5 else 1 for y in y_pred]
+        return class_pred
 
