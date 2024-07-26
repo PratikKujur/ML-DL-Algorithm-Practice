@@ -1,7 +1,7 @@
 import numpy as np
 
-class LinearRegreesion:
-    def __init__(self,iter=100,alpha=0.001):
+class LinearRegression:
+    def __init__(self,iter=4000,alpha=0.001):
         self.iter=iter
         self.alpha=alpha
         self.weight=None
@@ -13,10 +13,10 @@ class LinearRegreesion:
         self.bias=0
 
         for _ in range(self.iter):
-            y_pred=np.dot(self.weight,features)+self.bias
+            y_pred=np.dot(X,self.weight)+self.bias
 
-            change_in_weight=(1/m)*np.dot(y_pred-y,X.T)
-            change_in_bias=np.sum(y_pred-y)
+            change_in_weight=(1/m)*np.dot(X.T,(y_pred-y))
+            change_in_bias=(1/m)*np.sum(y_pred-y)
 
             self.weight=self.weight-self.alpha*(change_in_weight)
             self.bias=self.bias-self.alpha*(change_in_bias)
